@@ -51,6 +51,12 @@ export default async function ComidaPage({ params }: Props) {
         ? item.categories[0]
         : item.categories
 
+    const imageSrc = item.image_url
+        ? item.image_url.startsWith("http")
+            ? item.image_url
+            : `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${item.image_url}`
+        : null
+
     const formattedPrice = new Intl.NumberFormat("es-CO", {
         style: "currency",
         currency: "COP",
@@ -81,9 +87,9 @@ export default async function ComidaPage({ params }: Props) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {/* Imagen principal */}
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800">
-                    {item.image_url ? (
+                    {imageSrc ? (
                         <Image
-                            src={item.image_url}
+                            src={imageSrc}
                             alt={item.name}
                             fill
                             className="object-cover"

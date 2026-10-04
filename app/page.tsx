@@ -38,7 +38,7 @@ export default async function Home() {
             </Link>
 
             <a
-              href="https://wa.me/573105332480"
+              href="https://wa.me/573165542426"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-zinc-700 hover:border-green-500 text-white font-medium text-base px-8 h-12 rounded-full transition-colors hover:text-green-400"

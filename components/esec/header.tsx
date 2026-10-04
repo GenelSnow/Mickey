@@ -48,7 +48,7 @@ export async function Header() {
               Menú
             </Link>
             <a
-              href="https://wa.me/573105332480"
+              href="https://wa.me/573165542426"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-300 hover:text-green-400 transition-colors"
@@ -62,7 +62,7 @@ export async function Header() {
             <CartButton />
 
             <a
-              href="https://wa.me/573105332480"
+              href="https://wa.me/573165542426"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex bg-green-600 hover:bg-green-500 text-white text-sm font-bold px-4 py-2 rounded-full transition-colors"

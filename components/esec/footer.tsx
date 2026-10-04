@@ -22,12 +22,12 @@ export function Footer() {
           <div className="text-center md:text-right">
             <p className="text-zinc-400 text-sm mb-1">Pide ahora</p>
             <a
-              href="https://wa.me/573105332480"
+              href="https://wa.me/573165542426"
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-500 font-bold text-lg hover:underline"
             >
-              WhatsApp: 310 533 2480
+              WhatsApp: 316 554 2426
             </a>
           </div>
         </div>

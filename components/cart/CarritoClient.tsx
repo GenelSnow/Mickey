@@ -18,7 +18,7 @@ import {
 import { useEffect } from "react"
 import { HORARIO_DEFAULT, estaAbierto, type HorarioSemana } from "@/lib/horario"
 
-const WHATSAPP_NUMBER = "573105332480"
+const WHATSAPP_NUMBER = "573165542426"
 
 function formatPrice(n: number) {
     return new Intl.NumberFormat("es-CO", {
