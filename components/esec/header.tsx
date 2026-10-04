@@ -31,18 +31,11 @@ export async function Header() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <div className="relative h-9 w-9 overflow-hidden rounded-full border border-orange-500/40">
-              <Image
-                src="https://ljjbgqqxunzqhwofoved.supabase.co/storage/v1/object/public/comida/loogo.jpeg"
-                alt="AlitasNOA"
-                fill
-                className="object-cover"
-                sizes="36px"
-                priority
-              />
+            <div className="relative h-9 w-9 overflow-hidden rounded-full border border-orange-500/40 bg-orange-500 flex items-center justify-center">
+              <span className="text-black font-black text-sm">M</span>
             </div>
             <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase">
-              Alitas<span className="text-orange-500">NOA</span>
+              Mickey
             </span>
           </Link>
           <EstadoLocal />

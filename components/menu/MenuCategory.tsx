@@ -45,21 +45,31 @@ export function MenuCategory({ category }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {category.menu_items
           ?.sort((a, b) => a.sort_order - b.sort_order)
-          .map((item) => (
-            <MenuItem
-              key={item.id}
-              item={{
-                id: item.id,                    
-                name: item.name,
-                description: item.description || "",
-                price: Number(item.price),
-                spicyLevel: item.spicy_level,
-                popular: item.is_popular,
-                image: item.image_url || undefined,
-              }}
-              accent={isMielMostaza ? "yellow" : "orange"}
-            />
-          ))}
+          .map((item) => {
+            // Construir URL pública de Storage si es path relativo
+            const imageUrl = item.image_url
+              ? item.image_url.startsWith("http")
+                ? item.image_url
+                : `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${item.image_url}`
+              : undefined
+
+            return (
+              <MenuItem
+                key={item.id}
+                item={{
+                  id: item.id,
+                  name: item.name,
+                  description: item.description || "",
+                  price: Number(item.price),
+                  spicyLevel: item.spicy_level,
+                  popular: item.is_popular,
+                  image: imageUrl,
+                  image_url: item.image_url,
+                }}
+                accent={isMielMostaza ? "yellow" : "orange"}
+              />
+            )
+          })}
       </div>
     </section>
   )
