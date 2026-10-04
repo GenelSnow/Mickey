@@ -15,16 +15,16 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
             <Flame className="h-4 w-4 fill-orange-500 text-orange-500" />
-            Bienvenido a AlitasNoa
+            Bienvenido a Mickey
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase leading-none">
-            Alas que te hacen
-            <span className="block text-orange-500 mt-2">volar</span>
+            La Mejor Comida 
+            <span className="block text-orange-500 mt-2">Rápida de Valledupar</span>
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            Las mejores alitas de Baranoa Atlantico📍. Clásicas, Miel Mostaza y mucho más.
+            La Mejor Comida Rápida de Valledupar📍. Clásicas, Miel Mostaza y mucho más.
             Preparadas al momento con salsas caseras.
           </p>
 
