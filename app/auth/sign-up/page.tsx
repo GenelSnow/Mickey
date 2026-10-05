@@ -5,38 +5,44 @@ import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Flame, Eye, EyeOff } from "lucide-react"
+import {
+  PAISES_TEL,
+  limpiarDigitos,
+  armarWhatsapp,
+  INPUT_CLASS,
+  AUTOFILL_FIX,
+} from "@/lib/paises-telefono"
 
 export default function SignUpPage() {
   const [nombre, setNombre] = useState("")
   const [apellido, setApellido] = useState("")
+  const [countryCode, setCountryCode] = useState("57")
   const [whatsapp, setWhatsapp] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
   const supabase = createClient()
-  const [showPassword, setShowPassword] = useState(false)
 
-  function limpiarNumero(value: string) {
-    return value.replace(/\D/g, "")
-  }
+  const pais = PAISES_TEL.find((p) => p.code === countryCode) ?? PAISES_TEL[0]
 
   async function handleSignUp(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
-    const numero = limpiarNumero(whatsapp)
-    if (numero.length < 10) {
-      setError("Ingresa un WhatsApp válido (mínimo 10 dígitos)")
+    const local = limpiarDigitos(whatsapp)
+    if (local.length < pais.minLen) {
+      setError(`WhatsApp inválido para ${pais.label} (${pais.minLen}–${pais.maxLen} dígitos)`)
       setLoading(false)
       return
     }
 
-    const whatsappFinal = numero.startsWith("57") ? numero : `57${numero}`
+    const whatsappFinal = armarWhatsapp(countryCode, local)
     const emailInterno = `${whatsappFinal}@mickey.com`
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: emailInterno,
       password,
       options: {
@@ -45,18 +51,8 @@ export default function SignUpPage() {
           apellido: apellido.trim() || null,
           whatsapp: whatsappFinal,
         },
-        // Evita flujo de confirmación por email (el correo no existe de verdad)
-        emailRedirectTo: undefined,
       },
     })
-
-    console.log("SIGNUP RESULT:", { data, error })
-    console.log("URL:", process.env.NEXT_PUBLIC_SUPABASE_URL)
-    // No loguees la key completa en producción; solo para depurar:
-    console.log("KEY presente:", !!(
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    ))
 
     setLoading(false)
 
@@ -69,13 +65,28 @@ export default function SignUpPage() {
       return
     }
 
+    // Crear perfil (si hay trigger en DB, puede fallar en silencio)
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (user) {
+      await supabase.from("perfiles").upsert({
+        id: user.id,
+        nombre: nombre.trim(),
+        apellido: apellido.trim() || null,
+        whatsapp: whatsappFinal,
+        rol: "usuario",
+        puntos: 0,
+      })
+    }
+
     router.push("/")
     router.refresh()
   }
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
+    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-10 sm:py-14">
+      <div className="w-full max-w-[400px]">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <Flame className="h-7 w-7 text-orange-500 fill-orange-500" />
@@ -83,15 +94,15 @@ export default function SignUpPage() {
               Mic<span className="text-orange-500">key</span>
             </span>
           </div>
-          <h1 className="text-3xl font-bold text-white">Crear cuenta</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">Crear cuenta</h1>
           <p className="text-zinc-400 mt-2 text-sm">
-            Regístrate para obtener descuentos y promociones
+            Regístrate para descuentos y promociones
           </p>
         </div>
 
-        <div className="border border-zinc-800 rounded-2xl p-6 bg-zinc-950/80">
+        <div className="border border-zinc-800 rounded-2xl p-5 sm:p-6 bg-zinc-950/80">
           <form onSubmit={handleSignUp} className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm text-zinc-400 mb-1.5">Nombre *</label>
                 <input
@@ -99,8 +110,9 @@ export default function SignUpPage() {
                   required
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
-                  className="w-full h-11 px-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500"
+                  className={`${INPUT_CLASS} ${AUTOFILL_FIX}`}
                   placeholder="Juan"
+                  autoComplete="given-name"
                 />
               </div>
               <div>
@@ -109,28 +121,55 @@ export default function SignUpPage() {
                   type="text"
                   value={apellido}
                   onChange={(e) => setApellido(e.target.value)}
-                  className="w-full h-11 px-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500"
+                  className={`${INPUT_CLASS} ${AUTOFILL_FIX}`}
                   placeholder="Opcional"
+                  autoComplete="family-name"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm text-zinc-400 mb-1.5">WhatsApp *</label>
-              <div className="flex gap-2">
-                <span className="inline-flex items-center h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-zinc-400 text-sm">
-                  +57
-                </span>
-                <input
-                  type="tel"
-                  required
-                  value={whatsapp}
-                  onChange={(e) => setWhatsapp(limpiarNumero(e.target.value))}
-                  className="flex-1 h-11 px-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500"
-                  placeholder="310 123 4567"
-                  maxLength={12}
-                />
+            {/* WhatsApp — país arriba en móvil, en fila en sm+ */}
+            <div className="space-y-1.5">
+              <label className="block text-sm text-zinc-400">WhatsApp</label>
+
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch">
+                {/* Selector país: ancho completo en móvil */}
+                <select
+                  value={countryCode}
+                  onChange={(e) => setCountryCode(e.target.value)}
+                  className={`w-full sm:w-[11.5rem] h-12 shrink-0 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm px-3 focus:outline-none focus:border-orange-500 ${AUTOFILL_FIX}`}
+                  aria-label="Código de país"
+                >
+                  {PAISES_TEL.map((p) => (
+                    <option key={p.code} value={p.code}>
+                      {p.flag} {p.label} (+{p.code})
+                    </option>
+                  ))}
+                </select>
+
+                {/* Número */}
+                <div className="relative min-w-0 flex-1">
+                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 text-sm font-medium">
+                    +{countryCode}
+                  </span>
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    required
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(limpiarDigitos(e.target.value))}
+                    className={`w-full h-12 pl-[3.25rem] pr-3.5 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/40 ${AUTOFILL_FIX}`}
+                    placeholder="3001234567"
+                    maxLength={pais.maxLen + 2}
+                    autoComplete="tel-national"
+                  />
+                </div>
               </div>
+
+              <p className="text-[11px] text-zinc-600">
+                Solo el número local · se guardará como +{countryCode}
+                {whatsapp || "…"}
+              </p>
             </div>
 
             <div>
@@ -142,20 +181,16 @@ export default function SignUpPage() {
                   minLength={6}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full h-11 px-4 pr-11 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder:text-zinc-600 focus:outline-none focus:border-orange-500"
+                  className={`w-full h-11 px-3.5 pr-11 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/40 ${AUTOFILL_FIX}`}
                   placeholder="Mínimo 6 caracteres"
+                  autoComplete="new-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition-colors"
-                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
                 >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
               </div>
             </div>
@@ -165,7 +200,7 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full h-11 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-bold transition-colors disabled:opacity-50"
+              className="w-full h-11 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold transition-colors disabled:opacity-50"
             >
               {loading ? "Creando cuenta..." : "Crear cuenta"}
             </button>

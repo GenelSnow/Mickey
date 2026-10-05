@@ -15,8 +15,16 @@ import {
     ArrowLeft,
     MessageCircle,
 } from "lucide-react"
+import {
+    PAISES_TEL,
+    limpiarDigitos,
+    armarWhatsapp,
+    partirWhatsapp,
+    AUTOFILL_FIX,
+} from "@/lib/paises-telefono"
 import { useEffect } from "react"
 import { HORARIO_DEFAULT, estaAbierto, type HorarioSemana } from "@/lib/horario"
+
 
 const WHATSAPP_NUMBER = "573165542426"
 
@@ -43,6 +51,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
     const supabase = createClient()
 
     const [nombre, setNombre] = useState("")
+    const [countryCode, setCountryCode] = useState("57")
     const [telefono, setTelefono] = useState("")
     const [direccion, setDireccion] = useState("")
     const [referencia, setReferencia] = useState("")
@@ -81,12 +90,10 @@ export default function CarritoClient({ modoReserva = false }: Props) {
 
             // WhatsApp sin el 57 para el input (+57 ya se asume o se muestra completo)
             let wa = perfil.whatsapp || ""
-            if (wa.startsWith("57") && wa.length > 10) {
-                wa = wa.slice(2)
-            }
-
+            const { code, local } = partirWhatsapp(wa)
+            setCountryCode(code)
+            setTelefono(local)
             setNombre(nombreCompleto)
-            setTelefono(wa)
             setDesdeCuenta(true)
         }
 
@@ -110,10 +117,10 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                 .join(" ")
 
             let wa = perfil.whatsapp || ""
-            if (wa.startsWith("57") && wa.length > 10) wa = wa.slice(2)
-
+            const { code, local } = partirWhatsapp(wa)
+            setCountryCode(code)
+            setTelefono(local)
             setNombre(nombreCompleto)
-            setTelefono(wa)
             setDesdeCuenta(true)
         })
     }
@@ -137,10 +144,9 @@ export default function CarritoClient({ modoReserva = false }: Props) {
 
     const totalConDomicilio = total + precioDomicilio
 
-    function buildWhatsAppMessage(
-        codigoUsado?: string | null,
-        comoReserva?: boolean
-    ) {
+    function buildWhatsAppMessage(codigoUsado?: string | null, comoReserva?: boolean) {
+
+        const telMsg = armarWhatsapp(countryCode, telefono)
         const esReservaMsg = comoReserva ?? modoReserva
         const lineasItems = items
             .map(
@@ -175,7 +181,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                 "------------------------------",
                 "*Datos de entrega*",
                 `Nombre: ${nombre.trim()}`,
-                `WhatsApp: ${telefono.trim()}`,
+                `WhatsApp: +${telMsg}`,
                 `Direccion: ${direccion.trim()}`,
             ]
 
@@ -225,7 +231,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
             "------------------------------",
             "*Datos de entrega*",
             `Nombre: ${nombre.trim()}`,
-            `WhatsApp: ${telefono.trim()}`,
+            `WhatsApp: +${telMsg}`,
             `Direccion: ${direccion.trim()}`,
         ]
 
@@ -254,14 +260,18 @@ export default function CarritoClient({ modoReserva = false }: Props) {
         e.preventDefault()
         setError(null)
 
+        const telefonoFull = armarWhatsapp(countryCode, telefono)
+
         if (items.length === 0) {
             setError("El carrito está vacío")
             return
         }
-        if (!nombre.trim() || !telefono.trim() || !direccion.trim()) {
+        if (!nombre.trim() || !telefonoFull || telefono.length < 7 || !direccion.trim()) {
             setError("Completa nombre, WhatsApp y dirección")
             return
         }
+
+        // ... resto igual
 
         setLoading(true)
 
@@ -333,7 +343,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                 estado: esReserva ? "reservado" : "ordenado",
                 es_reserva: esReserva,
                 nombre_entrega: nombre.trim(),
-                telefono: telefono.replace(/\D/g, ""),
+                telefono: armarWhatsapp(countryCode, telefono),
                 direccion: direccion.trim(),
                 referencia_vivienda: referencia.trim() || null,
                 nota_adicional: nota.trim() || null,
@@ -522,17 +532,47 @@ export default function CarritoClient({ modoReserva = false }: Props) {
 
                         <div>
                             <label className="block text-xs text-zinc-400 mb-1">WhatsApp *</label>
-                            <input
-                                required
-                                type="tel"
-                                value={telefono}
-                                onChange={(e) => {
-                                    setTelefono(e.target.value.replace(/\D/g, ""))
-                                    setDesdeCuenta(false)
-                                }}
-                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500"
-                                placeholder="3101234567"
-                            />
+
+                            {/* Una sola fila: código compacto + número */}
+                            <div className="flex gap-2 items-stretch">
+                                {/* Solo bandera + código (sin nombre del país → no se come el espacio) */}
+                                <select
+                                    value={countryCode}
+                                    onChange={(e) => {
+                                        setCountryCode(e.target.value)
+                                        setDesdeCuenta(false)
+                                    }}
+                                    className={`w-[5.5rem] sm:w-[6.25rem] shrink-0 h-10 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm px-1.5 focus:outline-none focus:border-orange-500 ${AUTOFILL_FIX}`}
+                                    aria-label="Código de país"
+                                    title={PAISES_TEL.find((p) => p.code === countryCode)?.label}
+                                >
+                                    {PAISES_TEL.map((p) => (
+                                        <option key={p.code} value={p.code}>
+                                            {p.flag} +{p.code}
+                                        </option>
+                                    ))}
+                                </select>
+
+                                {/* Número ocupa el resto */}
+                                <input
+                                    required
+                                    type="tel"
+                                    inputMode="numeric"
+                                    value={telefono}
+                                    onChange={(e) => {
+                                        setTelefono(limpiarDigitos(e.target.value))
+                                        setDesdeCuenta(false)
+                                    }}
+                                    className={`min-w-0 flex-1 h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 ${AUTOFILL_FIX}`}
+                                    placeholder="3001234567"
+                                />
+                            </div>
+
+                            <p className="text-[10px] text-zinc-600 mt-1">
+                                {PAISES_TEL.find((p) => p.code === countryCode)?.label ?? ""} · se enviará +
+                                {countryCode}
+                                {telefono || "…"}
+                            </p>
                         </div>
 
                         {tieneCuenta && (

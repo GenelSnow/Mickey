@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Flame, Eye, EyeOff } from "lucide-react"
 import { toast } from "sonner"
+import { INPUT_CLASS, AUTOFILL_FIX } from "@/lib/paises-telefono"
 
 export default function CambiarClavePage() {
   const [password, setPassword] = useState("")
@@ -28,7 +29,6 @@ export default function CambiarClavePage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-
     if (password.length < 6) {
       toast.error("Mínimo 6 caracteres")
       return
@@ -63,13 +63,13 @@ export default function CambiarClavePage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
+    <div className="min-h-[calc(100vh-140px)] flex items-center justify-center px-4 py-10 sm:py-14">
+      <div className="w-full max-w-[400px]">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <Flame className="h-7 w-7 text-orange-500 fill-orange-500" />
             <span className="text-2xl font-black tracking-tighter text-white uppercase">
-              Alitas<span className="text-orange-500">NOA</span>
+              Mic<span className="text-orange-500">key</span>
             </span>
           </div>
           <h1 className="text-2xl font-bold text-white">Cambiar contraseña</h1>
@@ -80,12 +80,10 @@ export default function CambiarClavePage() {
 
         <form
           onSubmit={handleSubmit}
-          className="border border-zinc-800 rounded-2xl p-6 bg-zinc-950/80 space-y-4"
+          className="border border-zinc-800 rounded-2xl p-5 sm:p-6 bg-zinc-950/80 space-y-4"
         >
           <div>
-            <label className="block text-sm text-zinc-400 mb-1.5">
-              Nueva contraseña
-            </label>
+            <label className="block text-sm text-zinc-400 mb-1.5">Nueva contraseña</label>
             <div className="relative">
               <input
                 type={show ? "text" : "password"}
@@ -93,8 +91,9 @@ export default function CambiarClavePage() {
                 minLength={6}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-11 px-4 pr-11 rounded-lg bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-orange-500"
+                className={`${INPUT_CLASS} pr-11 ${AUTOFILL_FIX}`}
                 placeholder="Mínimo 6 caracteres"
+                autoComplete="new-password"
               />
               <button
                 type="button"
@@ -107,24 +106,23 @@ export default function CambiarClavePage() {
           </div>
 
           <div>
-            <label className="block text-sm text-zinc-400 mb-1.5">
-              Confirmar contraseña
-            </label>
+            <label className="block text-sm text-zinc-400 mb-1.5">Confirmar contraseña</label>
             <input
               type={show ? "text" : "password"}
               required
               minLength={6}
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
-              className="w-full h-11 px-4 rounded-lg bg-zinc-900 border border-zinc-700 text-white focus:outline-none focus:border-orange-500"
+              className={`${INPUT_CLASS} ${AUTOFILL_FIX}`}
               placeholder="Repite la contraseña"
+              autoComplete="new-password"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-11 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-bold disabled:opacity-50"
+            className="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold disabled:opacity-50"
           >
             {loading ? "Guardando..." : "Guardar contraseña"}
           </button>
