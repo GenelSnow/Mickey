@@ -9,8 +9,8 @@ import { Toaster } from "sonner"
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
-  title: "AlitasNOA | Alas que te hacen volar",
-  description: "Las mejores alitas de la ciudad. Clásicas y Miel Mostaza.",
+  title: "Mickey | Comida rápida",
+  description: "la mejor comida rapida de valledupar",
   icons: {
     icon: "https://ljjbgqqxunzqhwofoved.supabase.co/storage/v1/object/public/comida/loogo.jpeg",
     apple: "https://ljjbgqqxunzqhwofoved.supabase.co/storage/v1/object/public/comida/loogo.jpeg",

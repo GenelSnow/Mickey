@@ -165,7 +165,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
         // ---------- RESERVA (local cerrado) ----------
         if (esReservaMsg) {
             const partes: string[] = [
-                "*RESERVA AlitasNOA*",
+                "*RESERVA Mickey*",
                 "------------------------------",
                 "",
                 "*Productos*",
@@ -207,7 +207,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                 "*Estado: RESERVADO*",
                 "El local estaba cerrado. Confirmar cuando abran.",
                 "",
-                "_Enviado desde la web de AlitasNOA_"
+                "_Enviado desde la web de Mickey_"
             )
 
             return partes.join("\n")
@@ -215,7 +215,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
 
         // ---------- PEDIDO NORMAL (local abierto) ----------
         const partes: string[] = [
-            "*Pedido AlitasNOA*",
+            "*Pedido Mickey*",
             "------------------------------",
             "",
             "*Productos*",
@@ -251,7 +251,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
             )
         }
 
-        partes.push("", "_Enviado desde la web de AlitasNOA_")
+        partes.push("", "_Enviado desde la web de Mickey_")
 
         return partes.join("\n")
     }

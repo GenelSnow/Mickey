@@ -20,11 +20,11 @@ type Opts = {
 }
 
 export function armarMensajePedido(o: Opts): string {
-    const saludo = `Hola ${o.nombre}, te escribimos de *AlitasNOA*.`
+    const saludo = `Hola ${o.nombre}, te escribimos de *Mickey*.`
 
     if (o.estado === "reservado") {
         return [
-            `Hola ${o.nombre}, te escribimos de *AlitasNOA*.`,
+            `Hola ${o.nombre}, te escribimos de *Mickey*.`,
             "",
             "¡Ya estamos *abiertos*!",
             "Tienes una *reserva* con nosotros.",
@@ -100,7 +100,7 @@ export function armarMensajePedido(o: Opts): string {
         return [
             saludo,
             "",
-            "Tu pedido fue *entregado*. ¡Gracias por comprar en AlitasNOA!",
+            "Tu pedido fue *entregado*. ¡Gracias por comprar en Mickey!",
             "Si te gustó, puedes dejar una reseña en la web del producto.",
             "",
             "Esperamos verte pronto.",

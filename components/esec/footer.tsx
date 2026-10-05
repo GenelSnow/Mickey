@@ -35,7 +35,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-zinc-900 text-center">
           <p className="text-zinc-600 text-xs">
-            © {new Date().getFullYear()} AlitasNOA. Todos los derechos reservados.
+            © {new Date().getFullYear()} Mickey. Todos los derechos reservados.
           </p>
         </div>
       </div>
