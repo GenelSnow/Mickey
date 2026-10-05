@@ -38,8 +38,12 @@ export default async function MenuPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
-      {categories?.map((category) => (
-        <MenuCategory key={category.id} category={category} />
+      {categories?.map((category, i) => (
+        <MenuCategory
+          key={category.id}
+          category={category}
+          defaultOpen={i === 0}
+        />
       ))}
     </div>
   )

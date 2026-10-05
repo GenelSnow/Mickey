@@ -641,7 +641,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                 value={codigoReferido}
                                 onChange={(e) => setCodigoReferido(e.target.value.toUpperCase().trim())}
                                 className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 uppercase tracking-wider"
-                                placeholder="ALI-XXXXXX"
+                                placeholder="MICXXXXXX"
                                 maxLength={20}
                             />
                             <p className="text-[11px] text-zinc-600 mt-1">

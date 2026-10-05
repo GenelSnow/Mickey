@@ -5,11 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { AddToCartButton } from "@/components/cart/AddToCartButton"
 
-interface Props {
-  item: MenuItemData
-  accent?: "red" | "yellow"
-}
-
 type MenuItemData = {
   id: string
   name: string
@@ -18,17 +13,31 @@ type MenuItemData = {
   spicyLevel?: number
   popular?: boolean
   image?: string
-  image_url?: string | null  // añadir esto
+  image_url?: string | null
 }
 
-export function MenuItem({ item, accent = "red" }: Props) {
-  const isYellow = accent === "yellow"
+interface Props {
+  item: MenuItemData
+  accent?: "red" | "yellow"
+  priority?: boolean
+  /** Cards más chicas (móvil 2 columnas) */
+  compact?: boolean
+}
 
+export function MenuItem({
+  item,
+  accent = "red",
+  priority = false,
+  compact = false,
+}: Props) {
+  const isYellow = accent === "yellow"
   const priceColor = isYellow ? "text-yellow-400" : "text-red-500"
   const badgeColor = isYellow
-    ? "bg-yellow-500 hover:bg-yellow-600 text-black"
-    : "bg-red-500 hover:bg-red-600 text-white"
-  const flameColor = isYellow ? "fill-yellow-400 text-yellow-400" : "fill-red-500 text-red-500"
+    ? "bg-yellow-500 text-black"
+    : "bg-red-600 text-white"
+  const flameColor = isYellow
+    ? "fill-yellow-400 text-yellow-400"
+    : "fill-red-500 text-red-500"
 
   const formattedPrice = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -37,57 +46,77 @@ export function MenuItem({ item, accent = "red" }: Props) {
   }).format(item.price)
 
   return (
-    <Link href={`/comida/${item.id}`}>
-      <Card className="overflow-hidden border-zinc-800 bg-zinc-950/80 hover:border-zinc-700 transition-all duration-300 hover:shadow-xl hover:shadow-red-900/20 group cursor-pointer h-full">
+    <Link href={`/comida/${item.id}`} className="block h-full">
+      <Card className="overflow-hidden border-zinc-800 bg-zinc-950/80 hover:border-zinc-700 transition-all duration-300 group cursor-pointer h-full flex flex-col">
+        {/* Imagen: más baja en móvil */}
         {item.image ? (
-          <div className="relative h-52 w-full overflow-hidden">
+          <div
+            className={`relative w-full overflow-hidden ${
+              compact ? "h-28 sm:h-36 md:h-52" : "h-52"
+            }`}
+          >
             <Image
               src={item.image}
               alt={item.name}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              loading="eager"   // o priority
-              quality={75}
+              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
+              priority={priority}
+              loading={priority ? "eager" : "lazy"}
+              quality={70}
             />
             {item.popular && (
-              <Badge className={`absolute top-3 left-3 ${badgeColor} font-bold`}>
-                <Crown className="h-3.5 w-3.5 mr-1" />
-                Popular
+              <Badge
+                className={`absolute top-1.5 left-1.5 md:top-3 md:left-3 ${badgeColor} font-bold text-[10px] md:text-xs px-1.5 py-0.5`}
+              >
+                <Crown className="h-3 w-3 mr-0.5" />
+                <span className="hidden xs:inline">Popular</span>
               </Badge>
             )}
           </div>
         ) : (
-          <div className="h-52 w-full bg-zinc-900 flex items-center justify-center">
-            <span className="text-zinc-600 text-sm">Sin imagen</span>
+          <div
+            className={`w-full bg-zinc-900 flex items-center justify-center ${
+              compact ? "h-28 sm:h-36 md:h-52" : "h-52"
+            }`}
+          >
+            <span className="text-zinc-600 text-xs">Sin imagen</span>
           </div>
         )}
 
-        <CardContent className="p-5 flex flex-col gap-3">
-          <div>
-            <h3 className="font-bold text-lg tracking-tight text-white group-hover:text-red-400 transition-colors">
+        <CardContent
+          className={`flex flex-col gap-1.5 md:gap-3 flex-1 ${
+            compact ? "p-2.5 sm:p-3 md:p-5" : "p-5"
+          }`}
+        >
+          <div className="min-w-0">
+            <h3
+              className={`font-bold tracking-tight text-white group-hover:text-red-400 transition-colors line-clamp-2 ${
+                compact ? "text-sm md:text-lg" : "text-lg"
+              }`}
+            >
               {item.name}
             </h3>
-            <p className="text-sm text-zinc-400 mt-1.5 leading-relaxed line-clamp-2">
+            {/* Descripción solo desde sm (en 2 cols móvil no cabe bien) */}
+            <p className="hidden sm:block text-sm text-zinc-400 mt-1 leading-relaxed line-clamp-2">
               {item.description}
             </p>
           </div>
 
           {item.spicyLevel !== undefined && item.spicyLevel > 0 && (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5">
               {Array.from({ length: item.spicyLevel }).map((_, i) => (
-                <Flame key={i} className={`h-4 w-4 ${flameColor}`} />
+                <Flame key={i} className={`h-3 w-3 md:h-4 md:w-4 ${flameColor}`} />
               ))}
-              <span className="text-xs text-zinc-500 ml-1">
-                {item.spicyLevel === 1 && "Suave"}
-                {item.spicyLevel === 2 && "Medio"}
-                {item.spicyLevel === 3 && "Extremo"}
-              </span>
             </div>
           )}
 
-          <div className="flex items-center justify-between gap-3 mt-auto pt-2">
-            <span className={`font-black text-xl ${priceColor}`}>
+          <div className="flex flex-col gap-2 mt-auto pt-1 md:flex-row md:items-center md:justify-between md:gap-3 md:pt-2">
+            <span
+              className={`font-black ${priceColor} ${
+                compact ? "text-sm md:text-xl" : "text-xl"
+              }`}
+            >
               {formattedPrice}
             </span>
             <AddToCartButton
@@ -95,7 +124,12 @@ export function MenuItem({ item, accent = "red" }: Props) {
               name={item.name}
               price={item.price}
               image_url={item.image_url ?? item.image ?? null}
-              className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-red-500 hover:bg-red-400 text-black text-sm font-bold px-4 h-9 transition-colors"
+              label={compact ? "+" : undefined}
+              className={`shrink-0 inline-flex items-center justify-center rounded-full bg-red-600 hover:bg-red-500 text-white font-bold transition-colors ${
+                compact
+                  ? "w-full md:w-auto text-xs px-2 h-8 md:text-sm md:px-4 md:h-9"
+                  : "text-sm px-4 h-9"
+              }`}
             />
           </div>
         </CardContent>

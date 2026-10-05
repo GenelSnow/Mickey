@@ -193,7 +193,7 @@ export function AdminRoles() {
                           )
                         }
                         className={inputClass + " font-mono"}
-                        placeholder="ALI-XXXX"
+                        placeholder="MICXXXX"
                       />
                     </td>
                     <td className="px-3 py-2 w-24">
