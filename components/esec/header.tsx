@@ -16,7 +16,7 @@ export async function Header() {
   let rol: string | null = null
 
   if (user) {
-    const { data: perfil } = await supabase
+    const { data: perfil, error: perfilError } = await supabase
       .from("perfiles")
       .select("nombre, rol")
       .eq("id", user.id)
