@@ -34,9 +34,7 @@ export default function SignUpPage() {
     }
 
     const whatsappFinal = numero.startsWith("57") ? numero : `57${numero}`
-
-    // Email interno (el usuario no lo ve)
-    const emailInterno = `${whatsappFinal}@clientes.alitasnoa.local`
+    const emailInterno = `${whatsappFinal}@mickey.com`
 
     const { data, error } = await supabase.auth.signUp({
       email: emailInterno,
@@ -47,6 +45,8 @@ export default function SignUpPage() {
           apellido: apellido.trim() || null,
           whatsapp: whatsappFinal,
         },
+        // Evita flujo de confirmación por email (el correo no existe de verdad)
+        emailRedirectTo: undefined,
       },
     })
 
@@ -80,7 +80,7 @@ export default function SignUpPage() {
           <div className="inline-flex items-center gap-2 mb-4">
             <Flame className="h-7 w-7 text-orange-500 fill-orange-500" />
             <span className="text-2xl font-black tracking-tighter text-white uppercase">
-              Alitas<span className="text-orange-500">NOA</span>
+              Mic<span className="text-orange-500">key</span>
             </span>
           </div>
           <h1 className="text-3xl font-bold text-white">Crear cuenta</h1>

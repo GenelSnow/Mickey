@@ -22,11 +22,11 @@ export default function LoginPage() {
     async function handleLogin(e: React.FormEvent) {
         e.preventDefault()
         setLoading(true)
-        setError(null)
+        setError(null) 
 
         const numero = limpiarNumero(whatsapp)
         const whatsappFinal = numero.startsWith("57") ? numero : `57${numero}`
-        const emailInterno = `${whatsappFinal}@clientes.alitasnoa.local`
+        const emailInterno = `${whatsappFinal}@mickey.com`
 
         const { error } = await supabase.auth.signInWithPassword({
             email: emailInterno,
@@ -51,7 +51,7 @@ export default function LoginPage() {
                     <div className="inline-flex items-center gap-2 mb-4">
                         <Flame className="h-7 w-7 text-orange-500 fill-orange-500" />
                         <span className="text-2xl font-black tracking-tighter text-white uppercase">
-                            Alitas<span className="text-orange-500">NOA</span>
+                            Mic<span className="text-orange-500">key</span>
                         </span>
                     </div>
                     <h1 className="text-3xl font-bold text-white">Iniciar sesión</h1>
@@ -115,7 +115,7 @@ export default function LoginPage() {
                             className="w-full h-11 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-bold transition-colors disabled:opacity-50"
                         >
                             {loading ? "Entrando..." : "Iniciar sesión"}
-                        </button> 
+                        </button>
                         <p className="text-center text-sm">
                             <Link
                                 href="/auth/cambiar-clave"
