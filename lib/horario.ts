@@ -100,3 +100,17 @@ export function estaAbierto(
     hasta: config.hasta,
   }
 }
+
+/** "22:00" → "10:00 p. m."  |  "11:00" → "11:00 a. m." */
+export function formatHora12(hm: string): string {
+  if (!hm || !hm.includes(":")) return hm
+  const [hStr, mStr] = hm.split(":")
+  let h = Number(hStr)
+  const m = mStr?.padStart(2, "0") ?? "00"
+  if (Number.isNaN(h)) return hm
+
+  const sufijo = h >= 12 ? "p. m." : "a. m."
+  h = h % 12
+  if (h === 0) h = 12
+  return `${h}:${m} ${sufijo}`
+}

@@ -49,18 +49,19 @@ export function AuthButtons({ nombre, rol }: Props) {
   // No logueado
   if (!nombre) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2">
         <Link
           href="/auth/login"
-          className="text-sm font-medium text-zinc-300 hover:text-white transition-colors px-3 py-2"
+          className="text-xs sm:text-sm font-medium text-zinc-300 hover:text-white transition-colors px-2 sm:px-3 py-1.5"
         >
           Entrar
         </Link>
         <Link
           href="/auth/sign-up"
-          className="text-sm font-bold bg-orange-500 hover:bg-orange-400 text-black px-4 py-2 rounded-full transition-colors"
+          className="text-xs sm:text-sm font-bold bg-orange-500 hover:bg-orange-400 text-black px-2.5 sm:px-4 py-1.5 rounded-full transition-colors whitespace-nowrap"
         >
-          Crear cuenta
+          <span className="sm:hidden">Cuenta</span>
+          <span className="hidden sm:inline">Crear cuenta</span>
         </Link>
       </div>
     )
