@@ -36,7 +36,7 @@ export function AddToCartButton({
       }}
       className={
         className ??
-        "inline-flex items-center gap-2 rounded-full bg-orange-500 hover:bg-orange-400 text-black text-sm font-bold px-4 py-2 transition-colors"
+        "inline-flex items-center gap-2 rounded-full bg-red-500 hover:bg-red-400 text-black text-sm font-bold px-4 py-2 transition-colors"
       }
     >
       <ShoppingBag className="h-4 w-4" />

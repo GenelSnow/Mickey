@@ -404,11 +404,11 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                 </div>
                 <h1 className="text-2xl font-bold text-white mb-2">Carrito vacío</h1>
                 <p className="text-zinc-400 text-sm mb-6">
-                    Agrega alitas desde el menú para empezar tu pedido.
+                    Agrega productos desde el menú para empezar tu pedido.
                 </p>
                 <Link
                     href="/menu"
-                    className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-black font-bold text-sm px-6 h-11 rounded-full transition-colors"
+                    className="inline-flex items-center gap-2 bg-red-500 hover:bg-red-400 text-black font-bold text-sm px-6 h-11 rounded-full transition-colors"
                 >
                     Ver menú
                 </Link>
@@ -420,7 +420,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
         <div className="container mx-auto px-4 py-10 max-w-3xl">
             <Link
                 href="/menu"
-                className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-orange-400 mb-6 transition-colors"
+                className="inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-red-400 mb-6 transition-colors"
             >
                 <ArrowLeft className="h-4 w-4" />
                 Seguir comprando
@@ -474,7 +474,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                             <Trash2 className="h-4 w-4" />
                                         </button>
                                     </div>
-                                    <p className="text-sm text-orange-400 font-medium">
+                                    <p className="text-sm text-red-400 font-medium">
                                         {formatPrice(item.price)}
                                     </p>
 
@@ -525,7 +525,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                     setNombre(e.target.value)
                                     setDesdeCuenta(false)
                                 }}
-                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500"
+                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500"
                                 placeholder="Tu nombre"
                             />
                         </div>
@@ -542,7 +542,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                         setCountryCode(e.target.value)
                                         setDesdeCuenta(false)
                                     }}
-                                    className={`w-[5.5rem] sm:w-[6.25rem] shrink-0 h-10 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm px-1.5 focus:outline-none focus:border-orange-500 ${AUTOFILL_FIX}`}
+                                    className={`w-[5.5rem] sm:w-[6.25rem] shrink-0 h-10 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm px-1.5 focus:outline-none focus:border-red-500 ${AUTOFILL_FIX}`}
                                     aria-label="Código de país"
                                     title={PAISES_TEL.find((p) => p.code === countryCode)?.label}
                                 >
@@ -563,7 +563,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                         setTelefono(limpiarDigitos(e.target.value))
                                         setDesdeCuenta(false)
                                     }}
-                                    className={`min-w-0 flex-1 h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 ${AUTOFILL_FIX}`}
+                                    className={`min-w-0 flex-1 h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 ${AUTOFILL_FIX}`}
                                     placeholder="3001234567"
                                 />
                             </div>
@@ -588,7 +588,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                             // opcional: no borrar los campos, solo desmarcar
                                         }
                                     }}
-                                    className="h-4 w-4 rounded border-zinc-600 bg-zinc-900 text-orange-500 focus:ring-orange-500"
+                                    className="h-4 w-4 rounded border-zinc-600 bg-zinc-900 text-red-500 focus:ring-red-500"
                                 />
                                 <span className="text-xs text-zinc-400">
                                     Usar nombre y WhatsApp de mi cuenta
@@ -605,7 +605,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                 required
                                 value={direccion}
                                 onChange={(e) => setDireccion(e.target.value)}
-                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500"
+                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500"
                                 placeholder="Calle, número, barrio"
                             />
                         </div>
@@ -617,7 +617,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                             <input
                                 value={referencia}
                                 onChange={(e) => setReferencia(e.target.value)}
-                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500"
+                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500"
                                 placeholder="Casa blanca, portón negro..."
                             />
                         </div>
@@ -628,7 +628,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                 value={nota}
                                 onChange={(e) => setNota(e.target.value)}
                                 rows={2}
-                                className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 resize-none"
+                                className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 resize-none"
                                 placeholder="Sin cebolla, timbre roto..."
                             />
                         </div>
@@ -640,7 +640,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                             <input
                                 value={codigoReferido}
                                 onChange={(e) => setCodigoReferido(e.target.value.toUpperCase().trim())}
-                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 uppercase tracking-wider"
+                                className="w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 uppercase tracking-wider"
                                 placeholder="ALI-XXXXXX"
                                 maxLength={20}
                             />
@@ -664,7 +664,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                         type="button"
                                         onClick={() => setFormaPago(op.id)}
                                         className={`h-10 rounded-lg text-sm font-medium border transition-colors ${formaPago === op.id
-                                            ? "border-orange-500 bg-orange-500/15 text-orange-400"
+                                            ? "border-red-500 bg-red-500/15 text-red-400"
                                             : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-500"
                                             }`}
                                     >
@@ -685,7 +685,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                             </div>
                             <div className="flex justify-between items-center pt-1">
                                 <span className="text-zinc-300 font-medium">Total</span>
-                                <span className="text-xl font-black text-orange-500">
+                                <span className="text-xl font-black text-red-500">
                                     {formatPrice(totalConDomicilio)}
                                 </span>
                             </div>

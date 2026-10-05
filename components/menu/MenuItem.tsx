@@ -7,7 +7,7 @@ import { AddToCartButton } from "@/components/cart/AddToCartButton"
 
 interface Props {
   item: MenuItemData
-  accent?: "orange" | "yellow"
+  accent?: "red" | "yellow"
 }
 
 type MenuItemData = {
@@ -21,14 +21,14 @@ type MenuItemData = {
   image_url?: string | null  // añadir esto
 }
 
-export function MenuItem({ item, accent = "orange" }: Props) {
+export function MenuItem({ item, accent = "red" }: Props) {
   const isYellow = accent === "yellow"
 
-  const priceColor = isYellow ? "text-yellow-400" : "text-orange-500"
+  const priceColor = isYellow ? "text-yellow-400" : "text-red-500"
   const badgeColor = isYellow
     ? "bg-yellow-500 hover:bg-yellow-600 text-black"
-    : "bg-orange-500 hover:bg-orange-600 text-white"
-  const flameColor = isYellow ? "fill-yellow-400 text-yellow-400" : "fill-orange-500 text-orange-500"
+    : "bg-red-500 hover:bg-red-600 text-white"
+  const flameColor = isYellow ? "fill-yellow-400 text-yellow-400" : "fill-red-500 text-red-500"
 
   const formattedPrice = new Intl.NumberFormat("es-CO", {
     style: "currency",
@@ -38,7 +38,7 @@ export function MenuItem({ item, accent = "orange" }: Props) {
 
   return (
     <Link href={`/comida/${item.id}`}>
-      <Card className="overflow-hidden border-zinc-800 bg-zinc-950/80 hover:border-zinc-700 transition-all duration-300 hover:shadow-xl hover:shadow-orange-900/20 group cursor-pointer h-full">
+      <Card className="overflow-hidden border-zinc-800 bg-zinc-950/80 hover:border-zinc-700 transition-all duration-300 hover:shadow-xl hover:shadow-red-900/20 group cursor-pointer h-full">
         {item.image ? (
           <div className="relative h-52 w-full overflow-hidden">
             <Image
@@ -65,7 +65,7 @@ export function MenuItem({ item, accent = "orange" }: Props) {
 
         <CardContent className="p-5 flex flex-col gap-3">
           <div>
-            <h3 className="font-bold text-lg tracking-tight text-white group-hover:text-orange-400 transition-colors">
+            <h3 className="font-bold text-lg tracking-tight text-white group-hover:text-red-400 transition-colors">
               {item.name}
             </h3>
             <p className="text-sm text-zinc-400 mt-1.5 leading-relaxed line-clamp-2">
@@ -95,7 +95,7 @@ export function MenuItem({ item, accent = "orange" }: Props) {
               name={item.name}
               price={item.price}
               image_url={item.image_url ?? item.image ?? null}
-              className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-orange-500 hover:bg-orange-400 text-black text-sm font-bold px-4 h-9 transition-colors"
+              className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-red-500 hover:bg-red-400 text-black text-sm font-bold px-4 h-9 transition-colors"
             />
           </div>
         </CardContent>

@@ -51,7 +51,7 @@ export default async function PedidoDetallePage({ params }: Props) {
     <div className="container mx-auto px-4 py-10 max-w-3xl">
       <Link
         href="/admin/pedidos"
-        className="text-sm text-zinc-400 hover:text-orange-400 mb-6 inline-block"
+        className="text-sm text-zinc-400 hover:text-red-400 mb-6 inline-block"
       >
         ← Volver a pedidos
       </Link>

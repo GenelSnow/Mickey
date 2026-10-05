@@ -123,7 +123,7 @@ export function estiloEstado(estado: string) {
             return {
                 emoji: "🔥",
                 label: "Procesando",
-                className: "bg-orange-500/15 text-orange-400 border border-orange-500/30",
+                className: "bg-red-500/15 text-red-400 border border-red-500/30",
             }
         case "en_envio":
             return {

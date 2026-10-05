@@ -18,7 +18,7 @@ export function CopyCodigo({ codigo }: { codigo: string }) {
       <button
         type="button"
         onClick={copiar}
-        className="text-zinc-400 hover:text-orange-400 transition-colors"
+        className="text-zinc-400 hover:text-red-400 transition-colors"
         aria-label="Copiar código"
       >
         {ok ? <Check className="h-5 w-5 text-green-400" /> : <Copy className="h-5 w-5" />}

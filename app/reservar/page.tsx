@@ -13,7 +13,7 @@ export default function ReservarPage() {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           href="/menu"
-          className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-orange-500 text-black font-bold text-sm"
+          className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-red-500 text-black font-bold text-sm"
         >
           Ver menú
         </Link>

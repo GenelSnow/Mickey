@@ -24,8 +24,8 @@ interface Props {
 
 export function MenuCategory({ category }: Props) {
   const isMielMostaza = category.name.toLowerCase().includes("miel")
-  const accentColor = isMielMostaza ? "text-yellow-400" : "text-orange-500"
-  const borderColor = isMielMostaza ? "border-yellow-500/30" : "border-orange-500/30"
+  const accentColor = isMielMostaza ? "text-yellow-400" : "text-red-500"
+  const borderColor = isMielMostaza ? "border-yellow-500/30" : "border-red-500/30"
 
   return (
     <section className="mb-16">
@@ -65,7 +65,7 @@ export function MenuCategory({ category }: Props) {
                   image: imageUrl,
                   image_url: item.image_url,
                 }}
-                accent={isMielMostaza ? "yellow" : "orange"}
+                accent={isMielMostaza ? "yellow" : "red"}
                 priority={index === 0}
               />
             )

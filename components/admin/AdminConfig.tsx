@@ -94,7 +94,7 @@ export function AdminConfig() {
 
   const estado = estaAbierto(horario)
   const inputClass =
-    "w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500"
+    "w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500"
 
   return (
     <div className="space-y-6 max-w-lg w-full mx-auto overflow-x-hidden px-1">
@@ -177,7 +177,7 @@ export function AdminConfig() {
         type="button"
         onClick={save}
         disabled={loading}
-        className="w-full h-11 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-bold text-sm disabled:opacity-50"
+        className="w-full h-11 rounded-full bg-red-500 hover:bg-red-400 text-black font-bold text-sm disabled:opacity-50"
       >
         {loading ? "Guardando..." : "Guardar configuración"}
       </button>

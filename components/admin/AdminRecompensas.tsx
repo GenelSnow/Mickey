@@ -87,7 +87,7 @@ export function AdminRecompensas() {
   }
 
   const inputClass =
-    "w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500"
+    "w-full h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500"
 
   return (
     <div className="grid gap-8 lg:grid-cols-2">
@@ -116,7 +116,7 @@ export function AdminRecompensas() {
             value={descripcion}
             onChange={(e) => setDescripcion(e.target.value)}
             rows={2}
-            className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 resize-none"
+            className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 resize-none"
             placeholder="Detalle opcional"
           />
         </div>
@@ -150,7 +150,7 @@ export function AdminRecompensas() {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 h-10 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-bold text-sm disabled:opacity-50"
+            className="flex-1 h-10 rounded-full bg-red-500 hover:bg-red-400 text-black font-bold text-sm disabled:opacity-50"
           >
             {loading ? "Guardando..." : editId ? "Actualizar" : "Crear"}
           </button>
@@ -173,11 +173,11 @@ export function AdminRecompensas() {
             key={r.id}
             type="button"
             onClick={() => startEdit(r)}
-            className="w-full text-left border border-zinc-800 rounded-xl p-3 bg-zinc-950/60 hover:border-orange-500/50 transition-colors"
+            className="w-full text-left border border-zinc-800 rounded-xl p-3 bg-zinc-950/60 hover:border-red-500/50 transition-colors"
           >
             <div className="flex justify-between gap-2">
               <span className="font-medium text-white">{r.titulo}</span>
-              <span className="text-orange-400 text-sm font-semibold shrink-0">
+              <span className="text-red-400 text-sm font-semibold shrink-0">
                 {r.puntos_requeridos} pts
               </span>
             </div>

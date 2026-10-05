@@ -115,7 +115,7 @@ export function AdminHorario() {
         type="button"
         onClick={save}
         disabled={loading}
-        className="w-full h-10 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-bold text-sm disabled:opacity-50"
+        className="w-full h-10 rounded-full bg-red-500 hover:bg-red-400 text-black font-bold text-sm disabled:opacity-50"
       >
         {loading ? "Guardando..." : "Guardar horario"}
       </button>

@@ -44,10 +44,10 @@ export default async function RecompensasPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
         <div className="border border-zinc-800 rounded-2xl p-6 bg-zinc-950/80">
           <div className="flex items-center gap-2 text-zinc-400 text-sm mb-2">
-            <Star className="h-4 w-4 text-orange-500" />
+            <Star className="h-4 w-4 text-red-500" />
             Tus puntos
           </div>
-          <p className="text-4xl font-black text-orange-500">{perfil.puntos}</p>
+          <p className="text-4xl font-black text-red-500">{perfil.puntos}</p>
         </div>
 
         <div className="border border-zinc-800 rounded-2xl p-6 bg-zinc-950/80">
@@ -122,7 +122,7 @@ export default async function RecompensasPage() {
       {/* Catálogo de recompensas */}
       <section>
         <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <Gift className="h-5 w-5 text-orange-500" />
+          <Gift className="h-5 w-5 text-red-500" />
           Canjear puntos
         </h2>
         <div className="grid gap-3">
@@ -138,14 +138,14 @@ export default async function RecompensasPage() {
                   {rec.descripcion && (
                     <p className="text-sm text-zinc-500">{rec.descripcion}</p>
                   )}
-                  <p className="text-xs text-orange-400 mt-1">
+                  <p className="text-xs text-red-400 mt-1">
                     {rec.puntos_requeridos} puntos
                   </p>
                 </div>
                 <button
                   disabled={!puede}
                   className={`text-sm font-bold px-4 py-2 rounded-full transition-colors ${puede
-                      ? "bg-orange-500 hover:bg-orange-400 text-black"
+                      ? "bg-red-500 hover:bg-red-400 text-black"
                       : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
                     }`}
                 >
@@ -161,7 +161,7 @@ export default async function RecompensasPage() {
       </section>
 
       <div className="mt-10">
-        <Link href="/menu" className="text-orange-400 text-sm hover:underline">
+        <Link href="/menu" className="text-red-400 text-sm hover:underline">
           ← Volver al menú
         </Link>
       </div>

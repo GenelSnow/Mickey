@@ -9,12 +9,8 @@ import { Toaster } from "sonner"
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
-  title: "Mickey | Comida rápida",
-  description: "la mejor comida rapida de valledupar",
-  icons: {
-    icon: "https://ljjbgqqxunzqhwofoved.supabase.co/storage/v1/object/public/comida/loogo.jpeg",
-    apple: "https://ljjbgqqxunzqhwofoved.supabase.co/storage/v1/object/public/comida/loogo.jpeg",
-  },
+  title: "Mickey | Comida rápida Valledupar",
+  description: "La mejor comida rápida de Valledupar. Hamburguesas, perros, pizza y más.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

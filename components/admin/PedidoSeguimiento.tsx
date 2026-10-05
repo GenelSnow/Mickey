@@ -251,7 +251,7 @@ export function PedidoSeguimiento({
                     <p className="text-sm text-zinc-500">Sin código de referido</p>
                 )}
 
-                <p className="text-sm text-orange-400 font-bold">
+                <p className="text-sm text-red-400 font-bold">
                     Total: {formatPrice(Number(pedido.total))}
                 </p>
 
@@ -341,7 +341,7 @@ export function PedidoSeguimiento({
                     type="button"
                     onClick={guardarEstado}
                     disabled={loading || bloqueado || estado === estadoGuardado}
-                    className="w-full h-10 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-bold text-sm disabled:opacity-50"
+                    className="w-full h-10 rounded-full bg-red-500 hover:bg-red-400 text-black font-bold text-sm disabled:opacity-50"
                 >
                     {loading ? "Guardando..." : "Guardar estado"}
                 </button>

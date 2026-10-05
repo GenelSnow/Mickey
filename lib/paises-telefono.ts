@@ -66,7 +66,7 @@ export function armarWhatsapp(countryCode: string, local: string): string {
 }
 
 export const INPUT_CLASS =
-  "w-full h-12 px-3.5 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/40 transition-colors"
+  "w-full h-12 px-3.5 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500/40 transition-colors"
 
 export const AUTOFILL_FIX =
   "[&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#18181b] [&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:[caret-color:white]"

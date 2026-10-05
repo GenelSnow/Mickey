@@ -27,7 +27,7 @@ export async function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-orange-900/40 bg-black/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-red-900/40 bg-black/90 backdrop-blur-md">
       <div className="container mx-auto px-3 sm:px-4 py-2.5 md:py-3">
         {/*
           Móvil: 2 filas
@@ -41,7 +41,7 @@ export async function Header() {
               href="/"
               className="flex items-center gap-1.5 sm:gap-2 shrink-0 min-w-0 order-1"
             >
-              <div className="h-8 w-8 rounded-full border border-orange-500/40 bg-orange-500 flex items-center justify-center shrink-0">
+              <div className="h-8 w-8 rounded-full border border-red-500/40 bg-red-500 flex items-center justify-center shrink-0">
                 <span className="text-black font-black text-sm">M</span>
               </div>
               <span className="text-base sm:text-xl font-black tracking-tighter text-white uppercase truncate">
@@ -58,7 +58,7 @@ export async function Header() {
             <nav className="hidden md:flex items-center gap-5 text-sm font-medium order-3">
               <Link
                 href="/menu"
-                className="text-zinc-300 hover:text-orange-400 transition-colors"
+                className="text-zinc-300 hover:text-red-400 transition-colors"
               >
                 Menú
               </Link>
@@ -72,7 +72,7 @@ export async function Header() {
               </a>
               <Link
                 href="/recompensas"
-                className="text-zinc-300 hover:text-orange-400 transition-colors"
+                className="text-zinc-300 hover:text-red-400 transition-colors"
               >
                 Recompensas
               </Link>
@@ -99,7 +99,7 @@ export async function Header() {
             <nav className="flex items-center justify-center gap-4 text-xs font-medium">
               <Link
                 href="/menu"
-                className="text-zinc-300 hover:text-orange-400 transition-colors"
+                className="text-zinc-300 hover:text-red-400 transition-colors"
               >
                 Menú
               </Link>
@@ -113,7 +113,7 @@ export async function Header() {
               </a>
               <Link
                 href="/recompensas"
-                className="text-zinc-300 hover:text-orange-400 transition-colors"
+                className="text-zinc-300 hover:text-red-400 transition-colors"
               >
                 Recompensas
               </Link>

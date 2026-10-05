@@ -61,9 +61,9 @@ export default function LoginPage() {
             <div className="w-full max-w-[400px]">
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center gap-2 mb-4">
-                        <Flame className="h-7 w-7 text-orange-500 fill-orange-500" />
+                        <Flame className="h-7 w-7 text-red-500 fill-red-500" />
                         <span className="text-2xl font-black tracking-tighter text-white uppercase">
-                            Mic<span className="text-orange-500">key</span>
+                            Mic<span className="text-red-500">key</span>
                         </span>
                     </div>
                     <h1 className="text-2xl sm:text-3xl font-bold text-white">Iniciar sesión</h1>
@@ -81,7 +81,7 @@ export default function LoginPage() {
                                 <select
                                     value={countryCode}
                                     onChange={(e) => setCountryCode(e.target.value)}
-                                    className={`w-full sm:w-[11.5rem] h-12 shrink-0 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm px-3 focus:outline-none focus:border-orange-500 ${AUTOFILL_FIX}`}
+                                    className={`w-full sm:w-[11.5rem] h-12 shrink-0 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm px-3 focus:outline-none focus:border-red-500 ${AUTOFILL_FIX}`}
                                     aria-label="Código de país"
                                 >
                                     {PAISES_TEL.map((p) => (
@@ -102,7 +102,7 @@ export default function LoginPage() {
                                         required
                                         value={whatsapp}
                                         onChange={(e) => setWhatsapp(limpiarDigitos(e.target.value))}
-                                        className={`w-full h-12 pl-[3.25rem] pr-3.5 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/40 ${AUTOFILL_FIX}`}
+                                        className={`w-full h-12 pl-[3.25rem] pr-3.5 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500/40 ${AUTOFILL_FIX}`}
                                         placeholder="3001234567"
                                         maxLength={pais.maxLen + 2}
                                         autoComplete="tel-national"
@@ -126,7 +126,7 @@ export default function LoginPage() {
                                     minLength={6}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className={`w-full h-11 px-3.5 pr-11 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/40 ${AUTOFILL_FIX}`}
+                                    className={`w-full h-11 px-3.5 pr-11 rounded-xl bg-zinc-900 border border-zinc-700 text-white text-sm placeholder:text-zinc-600 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500/40 ${AUTOFILL_FIX}`}
                                     placeholder="Tu contraseña"
                                     autoComplete="current-password"
                                 />
@@ -146,7 +146,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full h-11 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold transition-colors disabled:opacity-50"
+                            className="w-full h-11 rounded-xl bg-red-500 hover:bg-red-400 text-black font-bold transition-colors disabled:opacity-50"
                         >
                             {loading ? "Entrando..." : "Iniciar sesión"}
                         </button>
@@ -154,7 +154,7 @@ export default function LoginPage() {
                         <p className="text-center text-sm">
                             <Link
                                 href="/auth/cambiar-clave"
-                                className="text-zinc-500 hover:text-orange-400 transition-colors"
+                                className="text-zinc-500 hover:text-red-400 transition-colors"
                             >
                                 ¿Olvidaste tu contraseña?
                             </Link>
@@ -164,7 +164,7 @@ export default function LoginPage() {
 
                 <p className="text-center text-zinc-500 text-sm mt-6">
                     ¿No tienes cuenta?{" "}
-                    <Link href="/auth/sign-up" className="text-orange-400 hover:underline">
+                    <Link href="/auth/sign-up" className="text-red-400 hover:underline">
                         Crear cuenta
                     </Link>
                 </p>

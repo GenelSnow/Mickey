@@ -90,8 +90,8 @@ export default async function ComidaPage({ params }: Props) {
     minimumFractionDigits: 0,
   }).format(Number(item.price))
 
-  const accentColor = "text-orange-500"
-  const flameColor = "fill-orange-500 text-orange-500"
+  const accentColor = "text-red-500"
+  const flameColor = "fill-red-500 text-red-500"
 
   const averageRating =
     reviews.length > 0
@@ -102,7 +102,7 @@ export default async function ComidaPage({ params }: Props) {
     <div className="container mx-auto px-4 py-10 max-w-5xl">
       <Link
         href="/menu"
-        className="inline-flex items-center gap-2 text-zinc-400 hover:text-orange-400 transition-colors mb-8"
+        className="inline-flex items-center gap-2 text-zinc-400 hover:text-red-400 transition-colors mb-8"
       >
         <ArrowLeft className="h-4 w-4" />
         Volver al menú
@@ -137,7 +137,7 @@ export default async function ComidaPage({ params }: Props) {
               </Badge>
             )}
             {item.is_popular && (
-              <Badge className="bg-orange-500 text-white font-bold">
+              <Badge className="bg-red-500 text-white font-bold">
                 <Crown className="h-3.5 w-3.5 mr-1" />
                 Popular
               </Badge>
@@ -199,7 +199,7 @@ export default async function ComidaPage({ params }: Props) {
               price={Number(item.price)}
               image_url={imageSrc}
               label="Agregar al carrito"
-              className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 text-black font-bold text-base px-8 h-11 rounded-full transition-colors"
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-red-500 hover:bg-red-400 text-black font-bold text-base px-8 h-11 rounded-full transition-colors"
             />
           </div>
         </div>

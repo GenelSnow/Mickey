@@ -157,7 +157,7 @@ export function ReviewForm({ menuItemId }: Props) {
       <div className="border border-zinc-800 rounded-2xl p-5 bg-zinc-950/80 text-sm text-zinc-400">
         <p>
           Inicia sesión para dejar una reseña.{" "}
-          <Link href="/auth/login" className="text-orange-400 hover:underline">
+          <Link href="/auth/login" className="text-red-400 hover:underline">
             Entrar
           </Link>
         </p>
@@ -221,7 +221,7 @@ export function ReviewForm({ menuItemId }: Props) {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           rows={3}
-          className="mt-1 w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 resize-none"
+          className="mt-1 w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 resize-none"
           placeholder="¿Qué te pareció?"
         />
       </div>
@@ -229,7 +229,7 @@ export function ReviewForm({ menuItemId }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full h-10 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-bold text-sm disabled:opacity-50"
+        className="w-full h-10 rounded-full bg-red-500 hover:bg-red-400 text-black font-bold text-sm disabled:opacity-50"
       >
         {loading ? "Publicando..." : "Publicar reseña"}
       </button>

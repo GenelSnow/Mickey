@@ -19,7 +19,7 @@ export default async function AdminPage() {
         </div>
         <Link
           href="/admin/pedidos"
-          className="text-sm font-medium text-orange-400 hover:underline"
+          className="text-sm font-medium text-red-400 hover:underline"
         >
           → Ver pedidos
         </Link>

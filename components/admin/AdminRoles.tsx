@@ -132,7 +132,7 @@ export function AdminRoles() {
   })
 
   const inputClass =
-    "h-9 px-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-orange-500 w-full"
+    "h-9 px-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm focus:outline-none focus:border-red-500 w-full"
 
   return (
     <div className="space-y-4">
@@ -147,7 +147,7 @@ export function AdminRoles() {
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
           placeholder="Buscar..."
-          className="h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm w-full sm:w-72 focus:outline-none focus:border-orange-500"
+          className="h-10 px-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white text-sm w-full sm:w-72 focus:outline-none focus:border-red-500"
         />
       </div>
 
@@ -227,7 +227,7 @@ export function AdminRoles() {
                         type="button"
                         disabled={loadingId === u.id}
                         onClick={() => guardar(u.id)}
-                        className="h-9 px-3 rounded-full bg-orange-500 hover:bg-orange-400 text-black text-xs font-bold disabled:opacity-50 whitespace-nowrap"
+                        className="h-9 px-3 rounded-full bg-red-500 hover:bg-red-400 text-black text-xs font-bold disabled:opacity-50 whitespace-nowrap"
                       >
                         {loadingId === u.id ? "..." : "Guardar"}
                       </button>

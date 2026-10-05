@@ -67,9 +67,9 @@ export default function CambiarClavePage() {
       <div className="w-full max-w-[400px]">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Flame className="h-7 w-7 text-orange-500 fill-orange-500" />
+            <Flame className="h-7 w-7 text-red-500 fill-red-500" />
             <span className="text-2xl font-black tracking-tighter text-white uppercase">
-              Mic<span className="text-orange-500">key</span>
+              Mic<span className="text-red-500">key</span>
             </span>
           </div>
           <h1 className="text-2xl font-bold text-white">Cambiar contraseña</h1>
@@ -122,14 +122,14 @@ export default function CambiarClavePage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full h-12 rounded-xl bg-orange-500 hover:bg-orange-400 text-black font-bold disabled:opacity-50"
+            className="w-full h-12 rounded-xl bg-red-500 hover:bg-red-400 text-black font-bold disabled:opacity-50"
           >
             {loading ? "Guardando..." : "Guardar contraseña"}
           </button>
         </form>
 
         <p className="text-center text-zinc-500 text-sm mt-6">
-          <Link href="/" className="text-orange-400 hover:underline">
+          <Link href="/" className="text-red-400 hover:underline">
             Volver al inicio
           </Link>
         </p>

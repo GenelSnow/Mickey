@@ -96,7 +96,7 @@ export default async function AdminPedidosPage() {
 
                 <Link
                   href={`/admin/pedidos/${p.id}`}
-                  className="text-sm text-orange-400 hover:underline"
+                  className="text-sm text-red-400 hover:underline"
                 >
                   Ver pedido
                 </Link>

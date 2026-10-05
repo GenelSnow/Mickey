@@ -75,7 +75,7 @@ function PedidoCard({ p, esReservaTab }: { p: PedidoRow; esReservaTab: boolean }
 
       <Link
         href={`/admin/pedidos/${p.id}`}
-        className="text-sm text-orange-400 hover:underline shrink-0"
+        className="text-sm text-red-400 hover:underline shrink-0"
       >
         {esReservaTab ? "Gestionar reserva" : "Ver pedido"}
       </Link>
@@ -102,7 +102,7 @@ export function AdminPedidosTabs({
           onClick={() => setTab("activos")}
           className={`flex-1 h-10 rounded-lg text-sm font-semibold transition-colors ${
             tab === "activos"
-              ? "bg-orange-500 text-black"
+              ? "bg-red-500 text-black"
               : "text-zinc-400 hover:text-white"
           }`}
         >
@@ -113,7 +113,7 @@ export function AdminPedidosTabs({
           onClick={() => setTab("reservas")}
           className={`flex-1 h-10 rounded-lg text-sm font-semibold transition-colors ${
             tab === "reservas"
-              ? "bg-orange-500 text-black"
+              ? "bg-red-500 text-black"
               : "text-zinc-400 hover:text-white"
           }`}
         >

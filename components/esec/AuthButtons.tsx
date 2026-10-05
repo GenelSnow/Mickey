@@ -58,7 +58,7 @@ export function AuthButtons({ nombre, rol }: Props) {
         </Link>
         <Link
           href="/auth/sign-up"
-          className="text-xs sm:text-sm font-bold bg-orange-500 hover:bg-orange-400 text-black px-2.5 sm:px-4 py-1.5 rounded-full transition-colors whitespace-nowrap"
+          className="text-xs sm:text-sm font-bold bg-red-500 hover:bg-red-400 text-black px-2.5 sm:px-4 py-1.5 rounded-full transition-colors whitespace-nowrap"
         >
           <span className="sm:hidden">Cuenta</span>
           <span className="hidden sm:inline">Crear cuenta</span>
@@ -73,10 +73,10 @@ export function AuthButtons({ nombre, rol }: Props) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded-full border border-zinc-700 hover:border-orange-500/50 bg-zinc-900/80 px-3 py-1.5 transition-colors"
+        className="flex items-center gap-2 rounded-full border border-zinc-700 hover:border-red-500/50 bg-zinc-900/80 px-3 py-1.5 transition-colors"
       >
-        <div className="h-7 w-7 rounded-full bg-orange-500/20 flex items-center justify-center">
-          <User className="h-4 w-4 text-orange-400" />
+        <div className="h-7 w-7 rounded-full bg-red-500/20 flex items-center justify-center">
+          <User className="h-4 w-4 text-red-400" />
         </div>
         <span className="hidden sm:inline text-sm font-medium text-white max-w-[100px] truncate">
           {nombre}
@@ -99,7 +99,7 @@ export function AuthButtons({ nombre, rol }: Props) {
             <Link
               href="/recompensas"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-orange-400 transition-colors"
+              className="flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-red-400 transition-colors"
             >
               <Gift className="h-4 w-4" />
               Mis recompensas
@@ -134,7 +134,7 @@ export function AuthButtons({ nombre, rol }: Props) {
             <Link
               href="/auth/cambiar-clave"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-orange-400 transition-colors"
+              className="flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-red-400 transition-colors"
             >
               <KeyRound className="h-4 w-4" />
               Cambiar contraseña

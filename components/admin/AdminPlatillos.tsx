@@ -201,7 +201,7 @@ export function AdminPlatillos() {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 h-10 rounded-full bg-orange-500 text-black font-bold text-sm disabled:opacity-50"
+            className="flex-1 h-10 rounded-full bg-red-500 text-black font-bold text-sm disabled:opacity-50"
           >
             {loading ? "Guardando..." : editId ? "Actualizar" : "Crear"}
           </button>
@@ -225,11 +225,11 @@ export function AdminPlatillos() {
             key={item.id}
             type="button"
             onClick={() => startEdit(item)}
-            className="w-full text-left border border-zinc-800 rounded-xl p-3 bg-zinc-950/60 hover:border-orange-500/50 transition-colors"
+            className="w-full text-left border border-zinc-800 rounded-xl p-3 bg-zinc-950/60 hover:border-red-500/50 transition-colors"
           >
             <div className="flex justify-between gap-2">
               <span className="font-medium text-white">{item.name}</span>
-              <span className="text-orange-400 text-sm font-semibold">
+              <span className="text-red-400 text-sm font-semibold">
                 ${Number(item.price).toLocaleString("es-CO")}
               </span>
             </div>

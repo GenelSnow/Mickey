@@ -30,7 +30,7 @@ export function AdminTabs({ rol }: { rol: string }) {
             onClick={() => setTab(t.id)}
             className={`flex-1 min-w-[110px] h-10 rounded-lg text-sm font-semibold transition-colors ${
               tab === t.id
-                ? "bg-orange-500 text-black"
+                ? "bg-red-500 text-black"
                 : "text-zinc-400 hover:text-white"
             }`}
           >
