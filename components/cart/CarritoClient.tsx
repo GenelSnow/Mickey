@@ -20,6 +20,14 @@ import { HORARIO_DEFAULT, estaAbierto, type HorarioSemana } from "@/lib/horario"
 
 const WHATSAPP_NUMBER = "573165542426"
 
+function buildImageUrl(path: string | null | undefined): string | null {
+    if (!path) return null
+    if (path.startsWith("http")) return path
+    const base = process.env.NEXT_PUBLIC_SUPABASE_URL
+    if (!base) return null
+    return `${base}/storage/v1/object/public/${path}`
+}
+
 function formatPrice(n: number) {
     return new Intl.NumberFormat("es-CO", {
         style: "currency",
@@ -424,70 +432,70 @@ export default function CarritoClient({ modoReserva = false }: Props) {
             <div className="grid gap-8 lg:grid-cols-5">
                 {/* Lista de ítems */}
                 <div className="lg:col-span-3 space-y-3">
-                    {items.map((item) => (
-                        <div
-                            key={item.id}
-                            className="flex gap-4 border border-zinc-800 rounded-2xl p-4 bg-zinc-950/80"
-                        >
-                            <div className="relative h-16 w-16 shrink-0 rounded-xl overflow-hidden bg-zinc-900">
-                                {item.image_url ? (
-                                    <Image
-                                        src={item.image_url}
-                                        alt={item.name}
-                                        fill
-                                        className="object-cover"
-                                        sizes="64px"
-                                    />
-                                ) : (
-                                    <div className="h-full w-full flex items-center justify-center text-zinc-600 text-xs">
-                                        —
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="flex-1 min-w-0">
-                                <div className="flex justify-between gap-2">
-                                    <h3 className="font-semibold text-white truncate">{item.name}</h3>
-                                    <button
-                                        type="button"
-                                        onClick={() => removeItem(item.id)}
-                                        className="text-zinc-500 hover:text-red-400 transition-colors shrink-0"
-                                        aria-label="Quitar"
-                                    >
-                                        <Trash2 className="h-4 w-4" />
-                                    </button>
+                    {items.map((item) => {
+                        const imgSrc = buildImageUrl(item.image_url)
+                        return (
+                            <div key={item.id} className="flex gap-4 border border-zinc-800 rounded-2xl p-4 bg-zinc-950/80">
+                                <div className="relative h-16 w-16 shrink-0 rounded-xl overflow-hidden bg-zinc-900">
+                                    {imgSrc ? (
+                                        <Image
+                                            src={imgSrc}
+                                            alt={item.name}
+                                            fill
+                                            className="object-cover"
+                                            sizes="64px"
+                                        />
+                                    ) : (
+                                        <div className="h-full w-full flex items-center justify-center text-zinc-600 text-xs">
+                                            —
+                                        </div>
+                                    )}
                                 </div>
-                                <p className="text-sm text-orange-400 font-medium">
-                                    {formatPrice(item.price)}
-                                </p>
 
-                                <div className="flex items-center gap-3 mt-2">
-                                    <div className="flex items-center gap-1 border border-zinc-700 rounded-full">
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex justify-between gap-2">
+                                        <h3 className="font-semibold text-white truncate">{item.name}</h3>
                                         <button
                                             type="button"
-                                            onClick={() => updateQty(item.id, item.quantity - 1)}
-                                            className="h-8 w-8 flex items-center justify-center text-zinc-400 hover:text-white"
+                                            onClick={() => removeItem(item.id)}
+                                            className="text-zinc-500 hover:text-red-400 transition-colors shrink-0"
+                                            aria-label="Quitar"
                                         >
-                                            <Minus className="h-3.5 w-3.5" />
+                                            <Trash2 className="h-4 w-4" />
                                         </button>
-                                        <span className="w-6 text-center text-sm text-white font-medium">
-                                            {item.quantity}
+                                    </div>
+                                    <p className="text-sm text-orange-400 font-medium">
+                                        {formatPrice(item.price)}
+                                    </p>
+
+                                    <div className="flex items-center gap-3 mt-2">
+                                        <div className="flex items-center gap-1 border border-zinc-700 rounded-full">
+                                            <button
+                                                type="button"
+                                                onClick={() => updateQty(item.id, item.quantity - 1)}
+                                                className="h-8 w-8 flex items-center justify-center text-zinc-400 hover:text-white"
+                                            >
+                                                <Minus className="h-3.5 w-3.5" />
+                                            </button>
+                                            <span className="w-6 text-center text-sm text-white font-medium">
+                                                {item.quantity}
+                                            </span>
+                                            <button
+                                                type="button"
+                                                onClick={() => updateQty(item.id, item.quantity + 1)}
+                                                className="h-8 w-8 flex items-center justify-center text-zinc-400 hover:text-white"
+                                            >
+                                                <Plus className="h-3.5 w-3.5" />
+                                            </button>
+                                        </div>
+                                        <span className="text-sm text-zinc-400">
+                                            {formatPrice(item.price * item.quantity)}
                                         </span>
-                                        <button
-                                            type="button"
-                                            onClick={() => updateQty(item.id, item.quantity + 1)}
-                                            className="h-8 w-8 flex items-center justify-center text-zinc-400 hover:text-white"
-                                        >
-                                            <Plus className="h-3.5 w-3.5" />
-                                        </button>
                                     </div>
-                                    <span className="text-sm text-zinc-400">
-                                        {formatPrice(item.price * item.quantity)}
-                                    </span>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
 
                 {/* Checkout */}
