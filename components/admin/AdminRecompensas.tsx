@@ -106,7 +106,7 @@ export function AdminRecompensas() {
             value={titulo}
             onChange={(e) => setTitulo(e.target.value)}
             className={inputClass}
-            placeholder="Ej: NOA Clásico de cortesía"
+            placeholder="Ej: Descuento 10%"
           />
         </div>
 
