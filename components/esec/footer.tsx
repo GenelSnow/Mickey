@@ -1,5 +1,8 @@
 import { Flame } from "lucide-react"
 
+const GOOGLE_REVIEWS_URL =
+  "https://share.google/hJlhpdltxUJKKBrwB"
+
 export function Footer() {
   return (
     <footer className="border-t border-zinc-900 bg-black">
@@ -18,14 +21,15 @@ export function Footer() {
           </div>
 
           <div className="text-center md:text-right">
-            <p className="text-zinc-400 text-sm mb-1">Pide ahora</p>
+            <p className="text-zinc-400 text-sm mb-1">¿Te gustó Mickey?</p>
             <a
-              href="https://wa.me/573165542426"
+              href={GOOGLE_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-green-500 font-bold text-lg hover:underline"
+              className="inline-flex items-center gap-2 text-yellow-400 font-bold text-lg hover:text-yellow-300 hover:underline transition-colors"
             >
-              WhatsApp: 316 554 2426
+              <span aria-hidden>★</span>
+              Déjanos tu reseña en Google
             </a>
           </div>
         </div>
