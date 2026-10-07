@@ -45,7 +45,7 @@ export async function Header() {
                 <span className="text-black font-black text-sm">M</span>
               </div>
               <span className="text-base sm:text-xl font-black tracking-tighter text-white uppercase truncate">
-                Mickey
+                Mickey House
               </span>
             </Link>
 
@@ -75,6 +75,13 @@ export async function Header() {
                 className="text-zinc-300 hover:text-red-400 transition-colors"
               >
                 Recompensas
+              </Link>
+
+              <Link
+                href="/combos"
+                className="text-zinc-300 hover:text-yellow-400 transition-colors"
+              >
+                Combos
               </Link>
             </nav>
 
@@ -116,6 +123,13 @@ export async function Header() {
                 className="text-zinc-300 hover:text-red-400 transition-colors"
               >
                 Recompensas
+              </Link>
+
+              <Link
+                href="/combos"
+                className="text-zinc-300 hover:text-yellow-400 transition-colors"
+              >
+                Combos
               </Link>
             </nav>
           </div>

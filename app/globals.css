@@ -49,14 +49,14 @@
 }
 
 :root {
-  /* Tema oscuro forzado para Mickey */
+  /* Tema oscuro forzado para Mickey House */
   --background: oklch(0.08 0 0);           /* Negro profundo */
   --foreground: oklch(0.98 0 0);           /* Blanco */
   --card: oklch(0.12 0 0);                /* Zinc muy oscuro */
   --card-foreground: oklch(0.98 0 0);
   --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(64.501% 0.21871 31.026);          /* Rojo Mickey Comida rapida */
+  --primary: oklch(64.501% 0.21871 31.026);          /* Rojo Mickey House Comida rapida */
   --primary-foreground: oklch(0.98 0 0);
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.98 0 0);

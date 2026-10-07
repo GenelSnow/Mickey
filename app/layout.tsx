@@ -9,7 +9,7 @@ import { Toaster } from "sonner"
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
-  title: "Mickey | Comida rápida Valledupar",
+  title: "Mickey House | Comida rápida Valledupar",
   description: "La mejor comida rápida de Valledupar. Hamburguesas, perros, pizza y más.",
 }
 

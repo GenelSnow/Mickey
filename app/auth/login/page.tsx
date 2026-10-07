@@ -38,7 +38,7 @@ export default function LoginPage() {
         }
 
         const whatsappFinal = armarWhatsapp(countryCode, local)
-        const emailInterno = `${whatsappFinal}@mickey.com`
+        const emailInterno = `${whatsappFinal}@Mickey House.com`
 
         const { error } = await supabase.auth.signInWithPassword({
             email: emailInterno,
