@@ -9,7 +9,7 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <Flame className="h-5 w-5 text-yellow-400 fill-yellow-400" />
               <span className="text-xl font-black tracking-tighter text-white uppercase">
-                Mic<span className="text-red-500">key</span>
+                Mic<span className="text-red-500">key</span><span className="text-yellow-500"> House</span>
               </span>
             </div>
             <p className="text-zinc-500 text-sm">
