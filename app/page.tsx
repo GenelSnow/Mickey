@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Flame, Percent, Gift, Star, ArrowRight } from "lucide-react"
 import { createClient } from "@/lib/supabase/server"
+import { GoogleReviewsBadge } from "@/components/esec/GoogleReviewsBadge"
 
 export default async function Home() {
   const supabase = await createClient()
@@ -61,6 +62,9 @@ export default async function Home() {
             >
               Pedir por WhatsApp
             </a>
+          </div>
+          <div className="mt-8 flex justify-center">
+            <GoogleReviewsBadge />
           </div>
         </div>
       </section>
