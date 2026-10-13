@@ -40,7 +40,7 @@ export default function SignUpPage() {
     }
 
     const whatsappFinal = armarWhatsapp(countryCode, local)
-    const emailInterno = `${whatsappFinal}@Mickey House.com`
+    const emailInterno = `${whatsappFinal}@mickey.com`
 
     const { error } = await supabase.auth.signUp({
       email: emailInterno,
