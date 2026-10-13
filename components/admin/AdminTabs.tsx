@@ -7,6 +7,7 @@ import { AdminRecompensas } from "@/components/admin/AdminRecompensas"
 import { AdminConfig } from "@/components/admin/AdminConfig"
 import { AdminRoles } from "@/components/admin/AdminRoles"
 
+
 type TabId = "platillos" | "combos" | "recompensas" | "config" | "roles"
 
 export function AdminTabs({ rol }: { rol: string }) {

@@ -4,6 +4,7 @@ import { getPerfil } from "@/lib/perfil"
 import { CopyCodigo } from "@/components/recompensas/CopyCodigo"
 import { Gift, Users, Star } from "lucide-react"
 import Link from "next/link"
+import { CanjearButton } from "@/components/recompensas/CanjearButton"
 
 export default async function RecompensasPage() {
   const perfil = await getPerfil()
@@ -29,6 +30,19 @@ export default async function RecompensasPage() {
     .select("*")
     .eq("activa", true)
     .order("puntos_requeridos")
+
+  const { data: misCanjes } = await supabase
+    .from("canjes")
+    .select(`
+      id,
+      codigo,
+      estado,
+      puntos_gastados,
+      created_at,
+      recompensas ( titulo, prefijo )
+    `)
+    .eq("perfil_id", perfil.id)
+    .order("created_at", { ascending: false })
 
   const completados = referidos?.filter((r) => r.estado === "completado").length ?? 0
   const pendientes = referidos?.filter((r) => r.estado === "pendiente").length ?? 0
@@ -102,10 +116,10 @@ export default async function RecompensasPage() {
                   </div>
                   <span
                     className={`text-xs font-bold px-2.5 py-1 rounded-full ${r.estado === "completado"
-                        ? "bg-green-500/15 text-green-400"
-                        : r.estado === "pendiente"
-                          ? "bg-yellow-500/15 text-yellow-400"
-                          : "bg-zinc-700 text-zinc-400"
+                      ? "bg-green-500/15 text-green-400"
+                      : r.estado === "pendiente"
+                        ? "bg-yellow-500/15 text-yellow-400"
+                        : "bg-zinc-700 text-zinc-400"
                       }`}
                   >
                     {r.estado === "completado"
@@ -142,15 +156,10 @@ export default async function RecompensasPage() {
                     {rec.puntos_requeridos} puntos
                   </p>
                 </div>
-                <button
+                <CanjearButton
+                  recompensaId={rec.id}
                   disabled={!puede}
-                  className={`text-sm font-bold px-4 py-2 rounded-full transition-colors ${puede
-                      ? "bg-red-500 hover:bg-red-400 text-black"
-                      : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
-                    }`}
-                >
-                  {puede ? "Canjear" : "Insuficiente"}
-                </button>
+                />
               </div>
             )
           })}
@@ -158,6 +167,53 @@ export default async function RecompensasPage() {
         <p className="text-xs text-zinc-600 mt-4">
           El canje se confirmará en el local. (La lógica de descontar puntos la conectamos con el carrito.)
         </p>
+      </section>
+
+      {/* Mis canjes */}
+      <section className="mb-10">
+        <h2 className="text-xl font-bold text-white mb-4">Mis códigos canjeados</h2>
+        {!misCanjes?.length ? (
+          <p className="text-zinc-500 text-sm border border-zinc-800 rounded-xl p-6">
+            Aún no has canjeado nada. Cuando canjees, el código aparecerá aquí.
+          </p>
+        ) : (
+          <ul className="space-y-3">
+            {misCanjes.map((c) => {
+              const rec = Array.isArray(c.recompensas)
+                ? c.recompensas[0]
+                : c.recompensas
+              return (
+                <li
+                  key={c.id}
+                  className="border border-zinc-800 rounded-xl px-4 py-3 bg-zinc-950/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                >
+                  <div>
+                    <p className="text-white font-medium">
+                      {(rec as { titulo?: string })?.titulo ?? "Recompensa"}
+                    </p>
+                    <p className="text-xs text-zinc-500">
+                      {new Date(c.created_at).toLocaleDateString("es-CO")} ·{" "}
+                      {c.puntos_gastados} pts
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CopyCodigo codigo={c.codigo} />
+                    <span
+                      className={`text-xs font-bold px-2.5 py-1 rounded-full ${c.estado === "disponible"
+                          ? "bg-green-500/15 text-green-400"
+                          : c.estado === "usado"
+                            ? "bg-zinc-700 text-zinc-400"
+                            : "bg-red-500/15 text-red-400"
+                        }`}
+                    >
+                      {c.estado}
+                    </span>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        )}
       </section>
 
       <div className="mt-10">
