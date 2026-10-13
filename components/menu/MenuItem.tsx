@@ -31,7 +31,7 @@ export function MenuItem({
   compact = false,
 }: Props) {
   const isYellow = accent === "yellow"
-  const priceColor = isYellow ? "text-yellow-400" : "text-red-500"
+  const priceColor = isYellow ? "text-yellow-400" : "text-red-700"
   const badgeColor = isYellow
     ? "bg-yellow-500 text-black"
     : "bg-red-600 text-white"
@@ -121,7 +121,7 @@ export function MenuItem({
               image_url={item.image_url ?? item.image ?? null}
               category={item.category ?? null}
               label={compact ? "+" : undefined}
-              className={`shrink-0 inline-flex items-center justify-center rounded-full bg-red-600 hover:bg-red-500 text-white font-bold transition-colors ${compact
+              className={`shrink-0 inline-flex items-center justify-center rounded-full bg-red-700 hover:bg-red-500 text-white font-bold transition-colors ${compact
                   ? "w-full md:w-auto text-xs px-2 h-8 md:text-sm md:px-4 md:h-9"
                   : "text-sm px-4 h-9"
                 }`}
