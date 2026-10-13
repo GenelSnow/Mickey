@@ -151,7 +151,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
         const lineasItems = items
             .map(
                 (i) =>
-                    `• *${i.name}* x${i.quantity} — ${formatPrice(i.price * i.quantity)}`
+                    `• *${i.name}*${i.category ? ` (${i.category})` : ""} x${i.quantity} — ${formatPrice(i.price * i.quantity)}`
             )
             .join("\n")
 
@@ -352,6 +352,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                     name: i.name,
                     price: i.price,
                     quantity: i.quantity,
+                    category: i.category ?? null,
                 })),
                 notas: nota.trim() || null,
                 codigo_referido_usado: codigoUsado,
@@ -462,9 +463,14 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                                     )}
                                 </div>
 
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex justify-between gap-2">
-                                        <h3 className="font-semibold text-white truncate">{item.name}</h3>
+                                <div className="min-w-0 flex-1">
+                                    <div className="flex justify-between gap-2 items-start">
+                                        <div className="min-w-0">
+                                            <h3 className="font-semibold text-white truncate">{item.name}</h3>
+                                            {item.category && (
+                                                <p className="text-xs text-zinc-500">{item.category}</p>
+                                            )}
+                                        </div>
                                         <button
                                             type="button"
                                             onClick={() => removeItem(item.id)}

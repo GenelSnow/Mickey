@@ -1,9 +1,10 @@
 export type CartItem = {
-  id: string          // menu_item id
+  id: string
   name: string
   price: number
   quantity: number
   image_url?: string | null
+  category?: string | null
 }
 
 export type CheckoutData = {

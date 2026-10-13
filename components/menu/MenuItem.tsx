@@ -14,13 +14,13 @@ type MenuItemData = {
   popular?: boolean
   image?: string
   image_url?: string | null
+  category?: string | null
 }
 
 interface Props {
   item: MenuItemData
   accent?: "red" | "yellow"
   priority?: boolean
-  /** Cards más chicas (móvil 2 columnas) */
   compact?: boolean
 }
 
@@ -51,9 +51,8 @@ export function MenuItem({
         {/* Imagen: más baja en móvil */}
         {item.image ? (
           <div
-            className={`relative w-full overflow-hidden ${
-              compact ? "h-28 sm:h-36 md:h-52" : "h-52"
-            }`}
+            className={`relative w-full overflow-hidden ${compact ? "h-28 sm:h-36 md:h-52" : "h-52"
+              }`}
           >
             <Image
               src={item.image}
@@ -76,24 +75,21 @@ export function MenuItem({
           </div>
         ) : (
           <div
-            className={`w-full bg-zinc-900 flex items-center justify-center ${
-              compact ? "h-28 sm:h-36 md:h-52" : "h-52"
-            }`}
+            className={`w-full bg-zinc-900 flex items-center justify-center ${compact ? "h-28 sm:h-36 md:h-52" : "h-52"
+              }`}
           >
             <span className="text-zinc-600 text-xs">Sin imagen</span>
           </div>
         )}
 
         <CardContent
-          className={`flex flex-col gap-1.5 md:gap-3 flex-1 ${
-            compact ? "p-2.5 sm:p-3 md:p-5" : "p-5"
-          }`}
+          className={`flex flex-col gap-1.5 md:gap-3 flex-1 ${compact ? "p-2.5 sm:p-3 md:p-5" : "p-5"
+            }`}
         >
           <div className="min-w-0">
             <h3
-              className={`font-bold tracking-tight text-white group-hover:text-red-400 transition-colors line-clamp-2 ${
-                compact ? "text-sm md:text-lg" : "text-lg"
-              }`}
+              className={`font-bold tracking-tight text-white group-hover:text-red-400 transition-colors line-clamp-2 ${compact ? "text-sm md:text-lg" : "text-lg"
+                }`}
             >
               {item.name}
             </h3>
@@ -113,9 +109,8 @@ export function MenuItem({
 
           <div className="flex flex-col gap-2 mt-auto pt-1 md:flex-row md:items-center md:justify-between md:gap-3 md:pt-2">
             <span
-              className={`font-black ${priceColor} ${
-                compact ? "text-sm md:text-xl" : "text-xl"
-              }`}
+              className={`font-black ${priceColor} ${compact ? "text-sm md:text-xl" : "text-xl"
+                }`}
             >
               {formattedPrice}
             </span>
@@ -124,12 +119,12 @@ export function MenuItem({
               name={item.name}
               price={item.price}
               image_url={item.image_url ?? item.image ?? null}
+              category={item.category ?? null}
               label={compact ? "+" : undefined}
-              className={`shrink-0 inline-flex items-center justify-center rounded-full bg-red-600 hover:bg-red-500 text-white font-bold transition-colors ${
-                compact
+              className={`shrink-0 inline-flex items-center justify-center rounded-full bg-red-600 hover:bg-red-500 text-white font-bold transition-colors ${compact
                   ? "w-full md:w-auto text-xs px-2 h-8 md:text-sm md:px-4 md:h-9"
                   : "text-sm px-4 h-9"
-              }`}
+                }`}
             />
           </div>
         </CardContent>

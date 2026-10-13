@@ -97,6 +97,7 @@ export default async function CombosPage() {
                       name={`Combo: ${c.name}`}
                       price={Number(c.price)}
                       image_url={c.image_url}
+                      category="Combos"
                       className="w-full md:w-auto inline-flex items-center justify-center rounded-full bg-red-600 hover:bg-red-500 text-white text-xs md:text-sm font-bold px-3 h-9"
                     />
                   </div>

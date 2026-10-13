@@ -13,6 +13,7 @@ type MenuItemType = {
   is_popular: boolean
   image_url: string | null
   sort_order: number
+  category: string
 }
 
 type CategoryType = {
@@ -100,6 +101,7 @@ export function MenuCategory({ category, defaultOpen = false }: Props) {
                     popular: item.is_popular,
                     image: imageUrl,
                     image_url: item.image_url,
+                    category: item.category,
                   }}
                   accent={isMielMostaza ? "yellow" : "red"}
                   priority={index === 0 && open}

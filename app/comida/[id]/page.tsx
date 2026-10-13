@@ -198,6 +198,7 @@ export default async function ComidaPage({ params }: Props) {
               name={item.name}
               price={Number(item.price)}
               image_url={imageSrc}
+              category={category?.name ?? null}
               label="Agregar al carrito"
               className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-red-500 hover:bg-red-400 text-black font-bold text-base px-8 h-11 rounded-full transition-colors"
             />

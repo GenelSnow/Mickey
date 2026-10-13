@@ -33,7 +33,7 @@ type Pedido = {
     direccion: string | null
     referencia_vivienda: string | null
     nota_adicional: string | null
-    items: { id?: string; name: string; price: number; quantity: number }[] | null
+    items: { id?: string; name: string; price: number; quantity: number; category: string | null }[] | null
     created_at: string
     codigo_referido_usado?: string | null
     referidor_id?: string | null
@@ -258,7 +258,11 @@ export function PedidoSeguimiento({
                 <ul className="text-sm text-zinc-400 border-t border-zinc-800 pt-3 space-y-1">
                     {(pedido.items || []).map((it, i) => (
                         <li key={i}>
-                            • {it.name} x{it.quantity}
+                            • {it.name}
+                            {it.category ? (
+                                <span className="text-zinc-500"> ({it.category})</span>
+                            ) : null}{" "}
+                            x{it.quantity}
                         </li>
                     ))}
                 </ul>

@@ -42,7 +42,7 @@ export function AdminPlatillos() {
       supabase
         .from("menu_items")
         .select(
-          "id, name, description, price, spicy_level, is_popular, is_available, image_url, category_id"
+          "id, name, description, price, spicy_level, is_popular, is_available, image_url, category_id, categories(name)"
         )
         .order("sort_order"),
     ])
@@ -229,6 +229,9 @@ export function AdminPlatillos() {
           >
             <div className="flex justify-between gap-2">
               <span className="font-medium text-white">{item.name}</span>
+              <span className="text-xs text-zinc-500">
+                {(item as any).categories?.name ?? "—"}
+              </span>
               <span className="text-red-400 text-sm font-semibold">
                 ${Number(item.price).toLocaleString("es-CO")}
               </span>
