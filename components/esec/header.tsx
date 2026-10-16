@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server"
 import { AuthButtons } from "./AuthButtons"
 import { CartButton } from "./shopicon"
 import { EstadoLocal } from "@/components/esec/EstadoLocal"
+import Image from "next/image"
 
 const WA = "https://wa.me/573165542426"
 
@@ -41,11 +42,18 @@ export async function Header() {
               href="/"
               className="flex items-center gap-1.5 sm:gap-2 shrink-0 min-w-0 order-1"
             >
-              <div className="h-8 w-8 rounded-full border border-red-500/40 bg-red-500 flex items-center justify-center shrink-0">
-                <span className="text-black font-black text-sm">M</span>
+              <div className="relative h-8 w-8 overflow-hidden rounded-full border border-orange-500/40 shrink-0">
+                <Image
+                  src="https://ihmjgurxdmyckxlbaold.supabase.co/storage/v1/object/public/comida/bkwhiteLogo.png"
+                  alt="AlitasNOA"
+                  fill
+                  className="object-cover"
+                  sizes="32px"
+                  priority
+                />
               </div>
               <span className="text-base sm:text-xl font-black tracking-tighter text-white uppercase truncate">
-                Mickey House
+                Mickey’s House
               </span>
             </Link>
 

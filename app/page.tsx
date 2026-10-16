@@ -30,7 +30,7 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-red-600/15 border border-red-500/40 text-red-400 text-sm font-medium px-4 py-1.5 rounded-full mb-8">
             <Flame className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-            Bienvenido a Mickey House
+            Bienvenido a Mickey’s House
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white uppercase leading-none">
@@ -109,7 +109,7 @@ export default async function Home() {
               </div>
               <h3 className="font-bold text-white text-lg">Puntos y recompensas</h3>
               <p className="text-zinc-400 text-sm mt-2 leading-relaxed">
-                Acumula puntos con cada compra y canjéalos por premios en Mickey House.
+                Acumula puntos con cada compra y canjéalos por premios en Mickey’s House.
               </p>
             </div>
           </div>

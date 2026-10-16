@@ -165,7 +165,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
         // ---------- RESERVA (local cerrado) ----------
         if (esReservaMsg) {
             const partes: string[] = [
-                "*RESERVA Mickey House*",
+                "*RESERVA Mickey’s House*",
                 "------------------------------",
                 "",
                 "*Productos*",
@@ -207,7 +207,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
                 "*Estado: RESERVADO*",
                 "El local estaba cerrado. Confirmar cuando abran.",
                 "",
-                "_Enviado desde la web de Mickey House_"
+                "_Enviado desde la web de Mickey’s House_"
             )
 
             return partes.join("\n")
@@ -215,7 +215,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
 
         // ---------- PEDIDO NORMAL (local abierto) ----------
         const partes: string[] = [
-            "*Pedido Mickey House*",
+            "*Pedido Mickey’s House*",
             "------------------------------",
             "",
             "*Productos*",
@@ -251,7 +251,7 @@ export default function CarritoClient({ modoReserva = false }: Props) {
             )
         }
 
-        partes.push("", "_Enviado desde la web de Mickey House_")
+        partes.push("", "_Enviado desde la web de Mickey’s House_")
 
         return partes.join("\n")
     }
